@@ -12,6 +12,9 @@ function Posts() {
 
   const getPosts = async () => {
     setLoading(true);
+
+    await new Promise ((resolve) => setTimeout(resolve, 1000));
+
     const limit = 5;
 
     const {posts: newPosts} = await fetch(`/api/posts?page=${page}&limit=${limit}`).then(res => res.json());
@@ -19,8 +22,12 @@ function Posts() {
     if (newPosts.length < limit) {
       setAreMorePosts(false);
     }
-
-    setPosts((prevPosts) => [...prevPosts, ...newPosts] );
+    
+    if (page === 1) {
+      setPosts(newPosts);
+    } else {
+      setPosts((prevPosts) => [...prevPosts, ...newPosts]);
+    }
 
     setLoading(false);
   }
