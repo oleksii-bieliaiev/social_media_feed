@@ -68,7 +68,6 @@ function Posts() {
             </div>
             
             <img src={imageSrc} alt={`post-${post.id}`} className="w-full object-cover h-60 rounded-md" />
-            console.log(imageSrc); 
           </div>
         )
       })}
